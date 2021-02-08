@@ -29,28 +29,37 @@ function fetchApiData() {
 function renderShows() {
     let htmlCode = '';
     for (let i = 0; i < shows.length; i++) {
-        const id = shows[i].show.id;
-        const name = shows[i].show.name;
-        // const image = shows[i].show.image.medium;
+        let id = shows[i].show.id;
+        let name = shows[i].show.name;
+        let image = shows[i].show.image;
+        console.log(image);
         htmlCode += `<li class="card js-card" id="${id}">`;
         htmlCode += `<h4 class="js-show-name">${name}</h4>`;
-        htmlCode += `<img src=" https://via.placeholder.com/100x100/ffffff/666666/?
-        text=TV" alt="poster of the show '${name}'" class="js-show-img"/>`;
+        if (image === null) {
+            htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
+            text=TV" alt="no image available" class="js-show-img"/>`;
+        } else {
+            htmlCode += `<img src="${image.medium}"`;
+        }
+        
         htmlCode += `</li>`;
     }
     showsContainer.innerHTML = htmlCode;
     listenFavorites();
 }
 
-function handleCards() {
-    console.log('me han clickado');
+function handleCards(ev) {
+    const clickedCard = ev.currentTarget;
+     console.log('me han clickado', clickedCard);
+    favorites.push(clickedCard);
+    console.log(favorites);
 }
 
 function listenFavorites() {
     const showCards = document.querySelectorAll('.js-card');
     for (const showCard of showCards) {
         showCard.addEventListener('click', handleCards);
-    }
+   }
 }
 
 

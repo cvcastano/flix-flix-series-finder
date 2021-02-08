@@ -1,9 +1,32 @@
+.main__input {
+    border-radius: 5px;
+    border: solid $title-color;
+    background-color: $background;
+    color: $font-color;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    outline: none;
+  &:hover, :focus {
+    outline: 1px dotted $font-color;
+    outline-offset: 1px;
+    }
+    &__search--button {
+        border-radius: 3px;
+        background-color: $title-color;
+        color: $font-color;
+        padding: 3px;
+        font-size: 60px;
+        text-transform: none;
+    }
+}
+
 .card {
-    background: black;
+    background: grey;
+    color: white;
     padding: 5px;
     margin: 5px;
-    display: inline-block;
-    width: 140px;
-    text-align: center;
+
+
 }
+
 

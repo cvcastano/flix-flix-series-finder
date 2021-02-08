@@ -1,0 +1,10 @@
+.header {
+    border-bottom: solid 2px $font-color;
+    margin-bottom: 10px;
+
+&__title {
+    font-family: $font-title;
+    color: $title-color;
+    font-size: 30px;
+  }
+}

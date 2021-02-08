@@ -1,6 +1,10 @@
 .page {
-    padding: 30px;
-    background-color: grey;
-    color: white;
-    height: 100%;
+        padding: 2rem;
+        height: 100vh; 
+        background: $background;
+        font-family: $font-main;
+        color: $font-color;
+      }
+li {
+    list-style: none;
 }
