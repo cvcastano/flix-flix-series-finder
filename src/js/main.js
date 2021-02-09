@@ -32,7 +32,6 @@ function renderShows() {
         let id = shows[i].show.id;
         let name = shows[i].show.name;
         let image = shows[i].show.image;
-        console.log(image);
         htmlCode += `<li class="card js-card" id="${id}">`;
         htmlCode += `<h4 class="js-show-name">${name}</h4>`;
         if (image === null) {
@@ -41,11 +40,12 @@ function renderShows() {
         } else {
             htmlCode += `<img src="${image.medium}"`;
         }
-        
         htmlCode += `</li>`;
     }
     showsContainer.innerHTML = htmlCode;
     listenFavorites();
+
+
 }
 
 function handleCards(ev) {
@@ -53,6 +53,9 @@ function handleCards(ev) {
      console.log('me han clickado', clickedCard);
     favorites.push(clickedCard);
     console.log(favorites);
+
+    const stringFavorites = favorites;
+    localStorage.setItem('favorites', stringFavorites);
 }
 
 function listenFavorites() {

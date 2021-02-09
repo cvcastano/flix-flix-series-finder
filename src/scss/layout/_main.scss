@@ -1,4 +1,6 @@
-.main__input {
+.main {
+
+&__input {
     border-radius: 5px;
     border: solid $title-color;
     background-color: $background;
@@ -18,6 +20,14 @@
         font-size: 60px;
         text-transform: none;
     }
+}
+&__container {
+    display: flex;
+
+&--favorites {
+    padding-right: 20px;
+}
+}
 }
 
 .card {
