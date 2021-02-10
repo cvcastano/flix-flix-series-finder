@@ -48,12 +48,19 @@ function renderShows() {
 
 }
 
-// escucha favoritos
+// escucha eventos en favoritos               
 function listenFavorites() {
     const showCards = document.querySelectorAll('.js-card');
     for (const showCard of showCards) {
         showCard.addEventListener('click', handleCards);
+        showCard.addEventListener('click', clickedCard);
     }
+}
+
+function clickedCard(ev) {
+    let clickedCardElement = event.currentTarget;
+    clickedCardElement.classList.add('clicked-card');
+
 }
 
 // maneja las tarjetas para saber cuál clickamos como favorita y llama a almacenarlas  
@@ -69,6 +76,11 @@ function handleCards(ev) {
     storeFavorites();
 }
 
+function CardIsClicked() {
+
+
+}
+
 // hace string los favoritos para poder almacenarlos y llama a pintarlos
 function storeFavorites() {
     const stringFavorites = JSON.stringify(favorites);
@@ -82,11 +94,11 @@ function fetchFavorites() {
     const localStorageFavorites = localStorage.getItem('favorites');
     if (localStorageFavorites) {
         const arrayFavorites = JSON.parse(localStorageFavorites);
-         favorites = arrayFavorites;
-         renderFavorites();
+        favorites = arrayFavorites;
+        renderFavorites();
     } else {
-        fetchApiData ();
-    }  
+        fetchApiData();
+    }
 }
 
 // pinta favoritos y llama a escuchar favoritos
