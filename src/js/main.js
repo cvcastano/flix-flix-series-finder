@@ -9,14 +9,12 @@ const favoritesContainer = document.querySelector('.js-favorites');
 let shows = [];
 let favorites = [];
 
-// escucha en el input y llama al Api
 function handleInput(ev) {
     ev.preventDefault();
     fetchApiData();
 }
 formElement.addEventListener('submit', handleInput);
-
-// recoge del api y llama a pintar series                                                
+                                             
 function fetchApiData() {
     fetch(`http://api.tvmaze.com/search/shows?q=${inputElement.value}`)
         .then(response => response.json())
@@ -26,7 +24,6 @@ function fetchApiData() {
         });
 }
 
-// pinta series y llama a escuchar favoritos
 function renderShows() {
     let htmlCode = '';
     for (let i = 0; i < shows.length; i++) {
@@ -44,12 +41,11 @@ function renderShows() {
         htmlCode += `</li>`;
     }
     showsContainer.innerHTML = htmlCode;
-    listenFavorites();
+    listenShows();
 
 }
-
-// escucha eventos en favoritos               
-function listenFavorites() {
+             
+function listenShows() {
     const showCards = document.querySelectorAll('.js-card');
     for (const showCard of showCards) {
         showCard.addEventListener('click', handleCards);
@@ -60,10 +56,8 @@ function listenFavorites() {
 function clickedCard(ev) {
     let clickedCardElement = event.currentTarget;
     clickedCardElement.classList.toggle('clicked-card');
-
 }
 
-// maneja las tarjetas para saber cuál clickamos como favorita y llama a almacenarlas  
 function handleCards(ev) {
     const clickedCardId = parseInt(ev.currentTarget.id);
     const clickedCard = shows.find(show => clickedCardId === show.show.id);
@@ -76,16 +70,13 @@ function handleCards(ev) {
     storeFavorites();
 }
 
-
-// hace string los favoritos para poder almacenarlos y llama a pintarlos
 function storeFavorites() {
     const stringFavorites = JSON.stringify(favorites);
     localStorage.setItem('favorites', stringFavorites);
 
     renderFavorites();
 }
-
-// recoge los favoritos del local storage y llama a pintarlos  
+ 
 function fetchFavorites() {
     const localStorageFavorites = localStorage.getItem('favorites');
     if (localStorageFavorites) {
@@ -93,11 +84,10 @@ function fetchFavorites() {
         favorites = arrayFavorites;
         renderFavorites();
     } else {
-        fetchApiData();
+        listenShows();
     }
 }
 
-// pinta favoritos y llama a escuchar favoritos
 function renderFavorites() {
     let htmlCodeFav = '';
     for (let i = 0; i < favorites.length; i++) {
@@ -115,7 +105,7 @@ function renderFavorites() {
         htmlCodeFav += `</li>`;
     }
     favoritesContainer.innerHTML = htmlCodeFav;
-    listenFavorites();
+    listenShows();
 }
 
 fetchFavorites();

@@ -1,31 +1,37 @@
 .main {
-  
-
   &__input {
     border-radius: 5px;
     border: solid $title-color;
     background-color: $background;
-    color: white;
+    color: $font-color;
     padding-left: 10px;
     margin-bottom: 10px;
     outline: none;
     &:hover,
     :focus {
-      outline: 1px dotted white;
+      outline: 1px dotted $font-color;
       outline-offset: 1px;
     }
   }
 
   &__search--button {
-    border-radius: 3px;
-    background-color: #635D5C;
-    color: black;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    font-size: 10px;
+    align-content: center;
+    border: solid $title-color;
+    background-color: $background;
+    color: $font-color;
     padding: 3px;
     text-transform: none;
+    margin-left: 15px;
+    outline: none;
+    transition: all ease-in-out 0.2s;
     &:hover {
+      background-color: $title-color;
+      color: $font-color;
       transform: scale(0.9);
-      transition: all ease-in-out 0.5s;
-      background-color: #CBEFB6;
     }
   }
   &__container {
@@ -45,20 +51,22 @@
 }
 .fav-card {
   background: $title-color;
-  border: solid #C8E0F4;
+  border: solid $font-color;
   color: black;
   padding: 5px;
   margin: 5px;
+  height: fit-content;
+  width: 100px;
 }
 .card {
   background: $background;
-  border: solid #C8E0F4;
-  color: #C8E0F4;
+  border: solid $font-color;
+  color: $font-color;
   padding: 5px;
   margin: 5px;
 }
 .clicked-card {
-  background: #C8E0F4;
+  background: $font-color;
   border: solid $title-color;
   color: $background;
   padding: 5px;

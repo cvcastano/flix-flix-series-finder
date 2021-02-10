@@ -1,11 +1,11 @@
 .header {
-  border-bottom: solid 2px #635D5C;
+  border-bottom: solid 2px $font-color;
   margin-bottom: 10px;
 
   &__title {
     font-family: $font-title;
     color: $title-color;
     font-size: 30px;
-    text-shadow: 2px 2px #110101;;
+    text-shadow: 2px 2px #110101;
   }
 }
