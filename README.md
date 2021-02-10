@@ -8,4 +8,4 @@ It is a web application made with Javascript in which you can search for TV show
 
 
 ## Wanna improve it? 
-#   ![](https://github.com/Adalab/modulo-2-evaluacion-final-cvcastano/blob/master/src/images/favicon.png)eel        ![](https://github.com/Adalab/modulo-2-evaluacion-final-cvcastano/blob/master/src/images/favicon.png)ree! 
+![](https://github.com/Adalab/modulo-2-evaluacion-final-cvcastano/blob/master/src/images/favicon.png)eel        ![](https://github.com/Adalab/modulo-2-evaluacion-final-cvcastano/blob/master/src/images/favicon.png)ree! 
