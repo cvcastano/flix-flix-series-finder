@@ -46,35 +46,6 @@ function renderShows() {
     showsContainer.innerHTML = htmlCode;
     listenFavorites();
 
-
-}
-
-// maneja las tarjetas para saber cuál clickamos como favorita y llama a pintarlas     
-function handleCards(ev) {
-    const clickedCardId = parseInt(ev.currentTarget.id);
-    const clickedCard = shows.find(show => clickedCardId === show.show.id);
-    const isFav = favorites.findIndex(show => clickedCardId === show.show.id);
-    if (isFav === -1) {
-        favorites.push(clickedCard);
-    } else {
-        favorites.splice(isFav, 1);
-    }
-    
-    renderFavorites();
-}
-
-// hace string los favoritos para poder almacenarlos
-function StoreFavorites() {
-    const stringFavorites = JSON.stringify(favorites);
-    localStorage.setItem('favorites', stringFavorites);
-}
-
-// recoge los favoritos del local storage y llama a pintarlos  
-function fetchFavorites() {
-    const localStorageFavorites = localStorage.getItem('favorites');
-    const arrayFavorites = JSON.parse(localStorageFavorites);
-
-    renderFavorites();
 }
 
 // escucha favoritos
@@ -85,6 +56,35 @@ function listenFavorites() {
     }
 }
 
+// maneja las tarjetas para saber cuál clickamos como favorita y llama a almacenarlas  
+function handleCards(ev) {
+    const clickedCardId = parseInt(ev.currentTarget.id);
+    const clickedCard = shows.find(show => clickedCardId === show.show.id);
+    const isFav = favorites.findIndex(show => clickedCardId === show.show.id);
+    if (isFav === -1) {
+        favorites.push(clickedCard);
+    } else {
+        favorites.splice(isFav, 1);
+    }
+    storeFavorites();
+}
+
+// hace string los favoritos para poder almacenarlos y llama a pintarlos
+function storeFavorites() {
+    const stringFavorites = JSON.stringify(favorites);
+    localStorage.setItem('favorites', stringFavorites);
+
+    renderFavorites();
+}
+
+// recoge los favoritos del local storage y llama a pintarlos  
+function fetchFavorites() {
+    const localStorageFavorites = localStorage.getItem('favorites');
+    const arrayFavorites = JSON.parse(localStorageFavorites);
+    favorites = arrayFavorites;
+
+    renderFavorites();
+}
 
 // pinta favoritos y llama a escuchar favoritos
 function renderFavorites() {
@@ -104,12 +104,10 @@ function renderFavorites() {
         htmlCodeFav += `</li>`;
     }
     favoritesContainer.innerHTML = htmlCodeFav;
-
     listenFavorites();
 }
 
-
-// al iniciar la página
 fetchFavorites();
+
 
 
