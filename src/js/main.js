@@ -1,31 +1,32 @@
 'use strict';
 
+'use strict';
 const inputElement = document.querySelector('.js-filter');
 const showsContainer = document.querySelector('.js-shows');
 const formElement = document.querySelector('.js-form');
+const favoritesContainer = document.querySelector('.js-favorites');
 
 let shows = [];
 let favorites = [];
 
-
+// escucha en el input y llama al Api
 function handleInput(ev) {
     ev.preventDefault();
     fetchApiData();
 }
 formElement.addEventListener('submit', handleInput);
 
-
+// recoge del api y llama a pintar series                                                
 function fetchApiData() {
     fetch(`http://api.tvmaze.com/search/shows?q=${inputElement.value}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             shows = data;
             renderShows();
         });
 }
 
-
+// pinta series y llama a escuchar favoritos
 function renderShows() {
     let htmlCode = '';
     for (let i = 0; i < shows.length; i++) {
@@ -38,7 +39,7 @@ function renderShows() {
             htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
             text=TV" alt="no image available" class="js-show-img"/>`;
         } else {
-            htmlCode += `<img src="${image.medium}"`;
+            htmlCode += `<img src="${image.medium}"alt="Poster of '${name}'" class="js-show-img"/>`;
         }
         htmlCode += `</li>`;
     }
@@ -48,21 +49,67 @@ function renderShows() {
 
 }
 
+// maneja las tarjetas para saber cuál clickamos como favorita y llama a pintarlas     
 function handleCards(ev) {
-    const clickedCard = ev.currentTarget;
-     console.log('me han clickado', clickedCard);
-    favorites.push(clickedCard);
-    console.log(favorites);
+    const clickedCardId = parseInt(ev.currentTarget.id);
+    const clickedCard = shows.find(show => clickedCardId === show.show.id);
+    const isFav = favorites.findIndex(show => clickedCardId === show.show.id);
+    if (isFav === -1) {
+        favorites.push(clickedCard);
+    } else {
+        favorites.splice(isFav, 1);
+    }
+    
+    renderFavorites();
+}
 
-    const stringFavorites = favorites;
+// hace string los favoritos para poder almacenarlos
+function StoreFavorites() {
+    const stringFavorites = JSON.stringify(favorites);
     localStorage.setItem('favorites', stringFavorites);
 }
 
+// recoge los favoritos del local storage y llama a pintarlos  
+function fetchFavorites() {
+    const localStorageFavorites = localStorage.getItem('favorites');
+    const arrayFavorites = JSON.parse(localStorageFavorites);
+
+    renderFavorites();
+}
+
+// escucha favoritos
 function listenFavorites() {
     const showCards = document.querySelectorAll('.js-card');
     for (const showCard of showCards) {
         showCard.addEventListener('click', handleCards);
-   }
+    }
 }
+
+
+// pinta favoritos y llama a escuchar favoritos
+function renderFavorites() {
+    let htmlCodeFav = '';
+    for (let i = 0; i < favorites.length; i++) {
+        let id = favorites[i].show.id;
+        let name = favorites[i].show.name;
+        let image = favorites[i].show.image;
+        htmlCodeFav += `<li class="fav-card js-fav-card" id="${id}">`;
+        htmlCodeFav += `<h4 class="js-fav-name">${name}</h4>`;
+        if (image === null) {
+            htmlCodeFav += `<img src="https://via.placeholder.com/105x150/ffffff/666666/?
+            text=TV" alt="no image available" class="js-show-img"/>`;
+        } else {
+            htmlCodeFav += `<img class="fav-img" src="${image.medium}"`;
+        }
+        htmlCodeFav += `</li>`;
+    }
+    favoritesContainer.innerHTML = htmlCodeFav;
+
+    listenFavorites();
+}
+
+
+// al iniciar la página
+fetchFavorites();
 
 

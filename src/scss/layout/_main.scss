@@ -1,42 +1,66 @@
 .main {
+  height: 100%;
+  background-color: $background;
 
-&__input {
+  &__input {
     border-radius: 5px;
     border: solid $title-color;
     background-color: $background;
-    color: $font-color;
+    color: white;
     padding-left: 10px;
     margin-bottom: 10px;
     outline: none;
-  &:hover, :focus {
-    outline: 1px dotted $font-color;
-    outline-offset: 1px;
+    &:hover,
+    :focus {
+      outline: 1px dotted white;
+      outline-offset: 1px;
     }
-    &__search--button {
-        border-radius: 3px;
-        background-color: $title-color;
-        color: $font-color;
-        padding: 3px;
-        font-size: 60px;
-        text-transform: none;
+  }
+
+  &__search--button {
+    border-radius: 3px;
+    background-color: #635D5C;
+    color: black;
+    padding: 3px;
+    text-transform: none;
+    &:hover {
+      transform: scale(0.9);
+      transition: all ease-in-out 0.5s;
+      background-color: #CBEFB6;
     }
-}
-&__container {
+  }
+  &__container {
     display: flex;
 
-&--favorites {
-    padding-right: 20px;
-}
-}
+    &--favorites {
+      padding-right: 20px;
+    }
+  }
 }
 
+.fav-img {
+  width: 105px;
+  height: 150px;
+  background: $title-color;
+}
+.fav-card {
+  background: $title-color;
+  border: solid #C8E0F4;
+  color: black;
+  padding: 5px;
+  margin: 5px;
+}
 .card {
-    background: grey;
-    color: white;
-    padding: 5px;
-    margin: 5px;
-
-
+  background: #CBEFB6;
+  border: solid #635D5C;
+  color: #635D5C;
+  padding: 5px;
+  margin: 5px;
 }
-
-
+.clicked-card {
+  background: #635D5C;
+  border: solid #CBEFB6;
+  color: #CBEFB6;
+  padding: 5px;
+  margin: 5px;
+}
