@@ -59,7 +59,7 @@ function listenFavorites() {
 
 function clickedCard(ev) {
     let clickedCardElement = event.currentTarget;
-    clickedCardElement.classList.add('clicked-card');
+    clickedCardElement.classList.toggle('clicked-card');
 
 }
 
@@ -76,10 +76,6 @@ function handleCards(ev) {
     storeFavorites();
 }
 
-function CardIsClicked() {
-
-
-}
 
 // hace string los favoritos para poder almacenarlos y llama a pintarlos
 function storeFavorites() {
@@ -111,7 +107,7 @@ function renderFavorites() {
         htmlCodeFav += `<li class="fav-card js-fav-card" id="${id}">`;
         htmlCodeFav += `<h4 class="js-fav-name">${name}</h4>`;
         if (image === null) {
-            htmlCodeFav += `<img src="https://via.placeholder.com/105x150/ffffff/666666/?
+            htmlCodeFav += `<img src="https://via.placeholder.com/55x75/ffffff/666666/?
             text=TV" alt="no image available" class="js-show-img"/>`;
         } else {
             htmlCodeFav += `<img class="fav-img" src="${image.medium}"`;
