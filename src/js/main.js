@@ -80,10 +80,13 @@ function storeFavorites() {
 // recoge los favoritos del local storage y llama a pintarlos  
 function fetchFavorites() {
     const localStorageFavorites = localStorage.getItem('favorites');
-    const arrayFavorites = JSON.parse(localStorageFavorites);
-    favorites = arrayFavorites;
-
-    renderFavorites();
+    if (localStorageFavorites) {
+        const arrayFavorites = JSON.parse(localStorageFavorites);
+         favorites = arrayFavorites;
+         renderFavorites();
+    } else {
+        fetchApiData ();
+    }  
 }
 
 // pinta favoritos y llama a escuchar favoritos
