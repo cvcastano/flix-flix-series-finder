@@ -14,7 +14,7 @@ function handleInput(ev) {
     fetchApiData();
 }
 formElement.addEventListener('submit', handleInput);
-                                             
+
 function fetchApiData() {
     fetch(`http://api.tvmaze.com/search/shows?q=${inputElement.value}`)
         .then(response => response.json())
@@ -44,7 +44,7 @@ function renderShows() {
     listenShows();
 
 }
-             
+
 function listenShows() {
     const showCards = document.querySelectorAll('.js-card');
     for (const showCard of showCards) {
@@ -76,7 +76,7 @@ function storeFavorites() {
 
     renderFavorites();
 }
- 
+
 function fetchFavorites() {
     const localStorageFavorites = localStorage.getItem('favorites');
     if (localStorageFavorites) {

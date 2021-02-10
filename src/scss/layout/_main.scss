@@ -15,22 +15,24 @@
   }
 
   &__search--button {
-    border-radius: 40px;
-    height: 40px;
-    width: 40px;
-    font-size: 10px;
+    border-radius: 15px;
+    height: fit-content;
+    width: fit-content;
+    font-size: 14px;
     align-content: center;
     border: solid $title-color;
-    background-color: $background;
+    background-color: $title-color;
     color: $font-color;
+    box-shadow: $font-color 1px 1px;
     padding: 3px;
     text-transform: none;
     margin-left: 15px;
     outline: none;
     transition: all ease-in-out 0.2s;
     &:hover {
-      background-color: $title-color;
+      background-color: $background;
       color: $font-color;
+      box-shadow: black 0.5px 0.5px;
       transform: scale(0.9);
     }
   }
